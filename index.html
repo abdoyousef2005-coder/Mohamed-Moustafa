@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohamed Moustafa | Operations Manager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #FF8C00, #0f0701);
+            --text-dark: #333;
+            --light-gray: #f6eaea;
+            --medium-gray: #e0e0e0;
+            --dark-gray: #444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray); /* was white */
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Cover Photo */
+        .cover-section {
+            position: relative;
+            height: 350px;
+            background: url('cover-photo.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: left;
+            border-bottom: 5px solid var(--medium-gray);
+        }
+        
+        .cover-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .cover-content-flex {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            width: 100%;
+            max-width: 900px;
+            padding-top: 40px;
+        }
+        
+        .profile-photo {
+            width: 170px;
+            height: 220px;
+            border-radius: 18px;
+            border: 4px solid rgb(87, 26, 26);
+            background: url('profile-photo.jpg') center/cover;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+            position: static;
+            margin: 0;
+            flex-shrink: 0;
+        }
+        
+        .profile-content {
+            position: static;
+            color: white;
+            padding-top: 0;
+            text-align: left;
+            flex: 1;
+        }
+        
+        .profile-content h1 {
+            font-size: 2.7rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .profile-content h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 18px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-top: 10px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+        }
+        
+        /* Gradient Headings */
+        .gradient-heading {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 2.2rem;
+            margin: 30px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--medium-gray);
+            position: relative;
+        }
+        
+        .gradient-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--primary-gradient);
+        }
+        
+        /* Sections */
+        .section {
+            padding: 40px 0;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+        
+        .section-content {
+            padding: 20px;
+        }
+        
+        /* About Section */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .highlight {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 600;
+        }
+        
+        /* Cards Layout */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--medium-gray);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+        
+        .card-header {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 15px 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .card-body {
+            padding: 20px;
+        }
+        
+        /* Certificates Section */
+        .certificate-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+        
+        .certificate-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .certificate-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: #8B4513;
+        }
+        
+        .certificate-issuer, .certificate-date {
+            color: var(--dark-gray);
+            font-size: 0.95rem;
+        }
+        
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .skill-category {
+            margin-bottom: 25px;
+        }
+        
+        .skill-category h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            color: #FF8C00;
+            border-left: 4px solid #8B4513;
+            padding-left: 10px;
+        }
+        
+        .skill-item {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .skill-icon {
+            width: 30px;
+            height: 30px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            color: white;
+        }
+        
+        /* Experience Section */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--medium-gray);
+            left: 50%;
+            margin-left: -2px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 20px 40px;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            border: 1px solid var(--medium-gray);
+            position: relative;
+        }
+        
+        .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: var(--light-gray);
+            border: 4px solid #FF8C00;
+            border-radius: 50%;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            right: -50px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::after {
+            left: -50px;
+        }
+        
+        .job-title {
+            color: #8B4513;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .company {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: #FF8C00;
+        }
+        
+        .duration {
+            color: var(--dark-gray);
+            font-style: italic;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .achievements {
+            padding-left: 20px;
+        }
+        
+        .achievements li {
+            margin-bottom: 8px;
+        }
+        
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+        
+        .copyright {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        /* Responsive */
+        @media (max-width: 900px) {
+            .cover-content-flex {
+                flex-direction: column;
+                align-items: center;
+                gap: 18px;
+                padding-top: 20px;
+                text-align: center;
+            }
+            .profile-photo {
+                width: 120px;
+                height: 150px;
+                margin-bottom: 10px;
+            }
+            .profile-content {
+                text-align: center;
+            }
+        }
+        @media (max-width: 768px) {
+            .cover-section {
+                height: 340px;
+            }
+            .cover-content-flex {
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+                padding-top: 10px;
+            }
+            .profile-photo {
+                width: 100px;
+                height: 120px;
+            }
+            .profile-content h1 {
+                font-size: 1.6rem;
+            }
+            .profile-content h2 {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cover Section -->
+    <section class="cover-section">
+        <div class="cover-overlay"></div>
+        <div class="cover-content-flex">
+            <div class="profile-photo"></div>
+            <div class="profile-content">
+                <h1>Mohamed Moustafa Ali</h1>
+                <h2>Director of Operations Manager</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-globe"></i>
+                        <span>Baghdad, Iraq</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>mohamed.sspeg@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+964 772 479 4892</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="container">
+        <!-- About Section -->
+        <section class="section">
+            <h2 class="gradient-heading">Professional Summary</h2>
+            <div class="section-content">
+                <div class="about-content">
+                    <p>Operations Leader with <span class="highlight">15+ years</span> steering F&B excellence across <span class="highlight">8+ countries</span>. Expertise in multi-unit management, cost optimization, and creating luxury guest experiences.</p>
+                    <p>Proven track record in launching successful restaurant concepts, optimizing operations, and achieving top industry rankings. Fluent in multiple languages with extensive international experience in high-volume food service environments.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Certificates Section -->
+        <section class="section">
+            <h2 class="gradient-heading">Certificates & Training</h2>
+            <div class="section-content">
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-header">Professional Development</div>
+                        <div class="card-body">
+                            <div class="certificate-item">
+                                <div class="certificate-title">Business Administration</div>
+                                <div class="certificate-issuer">American Diploma Course International Academy</div>
+                                <div class="certificate-date">Master Certificate</div>
+                                <img src="certificate-american-diploma.jpg" alt="American Diploma Certificate" style="width:100%;max-width:350px;margin:18px 0 0 0;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.10);">
+                            </div>
+                            <div class="certificate-item">
+                                <div class="certificate-title">Crisis Management & Human Resources</div>
+                                <div class="certificate-issuer">ATCC Centre</div>
+                                <div class="certificate-date">2006</div>
+                                <img src="atcc-certificate.jpg" alt="ATCC Crisis Management & Human Resources Certificate" style="width:100%;max-width:350px;margin:18px 0 0 0;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.10);">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">Technical & Safety</div>
+                        <div class="card-body">
+                            <div class="certificate-item">
+                                <div class="certificate-title">Maritime Safety Courses</div>
+                                <div class="certificate-issuer">Arab Academy for Science & Technology</div>
+                                <div class="certificate-date">2004</div>
+                                <ul style="margin-top: 10px; padding-left: 20px;">
+                                    <li>Personal Safety & Social Responsibilities</li>
+                                    <li>Medical Emergency Basic Training</li>
+                                    <li>Fire Prevention & Firefighting</li>
+                                    <li>Personal Survival Techniques</li>
+                                </ul>
+                            </div>
+                            <div class="certificate-item">
+                                <div class="certificate-title">Microsoft Office Suite</div>
+                                <div class="certificate-issuer">Microsoft Certified Training</div>
+                                <img src="microsoft-certificate.jpg" alt="Microsoft Office Suite Certificate" style="width:100%;max-width:350px;margin:18px 0 0 0;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.10);">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">Specialized Training</div>
+                        <div class="card-body">
+                            <div class="certificate-item">
+                                <div class="certificate-title">International Trainer Certification</div>
+                                <div class="certificate-issuer">Haagen Dazs America</div>
+                                <div class="certificate-date">Dubai, UAE (2013)</div>
+                                <img src="haagen-dazs-certificate.jpg" alt="Haagen Dazs America Certificate" style="width:100%;max-width:350px;margin:18px 0 0 0;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.10);">
+                            </div>
+                            <div class="certificate-item">
+                                <div class="certificate-title">Art of Management</div>
+                                <div class="certificate-issuer">SSP | Cyprus</div>
+                                <div class="certificate-date">2013</div>
+                            </div>
+                            <div class="certificate-item">
+                                <div class="certificate-title">Restaurant Operations</div>
+                                <div class="certificate-issuer">Hippopotamus Restaurant</div>
+                                <div class="certificate-date">Moscow, Russia (2008)</div>
+                                <img src="hippo-certificate.jpg" alt="Hippopotamus Certificate" style="width:100%;max-width:350px;margin:18px 0 0 0;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.10);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align:center; margin-top:32px;">
+                    <button id="toggle-others-btn" style="background: var(--primary-gradient); color: white; border: none; border-radius: 6px; padding: 10px 32px; font-size: 1.1rem; cursor: pointer; transition: background 0.2s;">
+                        Others
+                    </button>
+                </div>
+                <div id="others-certificates" style="display:none; justify-content:center; gap:24px; flex-wrap:wrap; margin:28px 0 0 0; padding:0 8px;" class="others-certificates-row">
+                    <img src="certificate-sadat-english.jpg" alt="Sadat Academy English Certificate" style="width:180px;max-width:98vw;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.10);">
+                    <img src="certificate-horizon-sharm.jpg" alt="Horizon Sharm Resort Certificate" style="width:180px;max-width:98vw;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.10);">
+                    <img src="certificate-ahla-food-beverage.jpg" alt="American Hotel & Lodging Association Food & Beverage Certificate" style="width:180px;max-width:98vw;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.10);">
+                    <img src="certificate-abercrombie-kent.jpg" alt="Abercrombie & Kent Nile Cruise Certificate" style="width:180px;max-width:98vw;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.10);">
+                    <img src="certificate-trianon.jpg" alt="Trianon Danish Bakery Certificate" style="width:180px;max-width:98vw;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.10);">
+                </div>
+            </div>
+        </section>
+        
+        <!-- Skills Section -->
+        <section class="section">
+            <h2 class="gradient-heading">Skills & Expertise</h2>
+            <div class="section-content">
+                <div class="skills-container">
+                    <div class="skill-category">
+                        <h3>Management Skills</h3>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-users"></i></div>
+                            <div>Multi-unit Operations Management</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-chart-line"></i></div>
+                            <div>Cost Optimization & Control</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-star"></i></div>
+                            <div>Luxury Guest Experience Development</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-rocket"></i></div>
+                            <div>Restaurant Openings & Launches</div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Technical Skills</h3>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-utensils"></i></div>
+                            <div>F&B Operations Excellence</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-laptop"></i></div>
+                            <div>Reservation Systems (Fidelio, Opera)</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-file-excel"></i></div>
+                            <div>Microsoft Office Suite</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-mobile-alt"></i></div>
+                            <div>Digital Ordering Systems</div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Languages</h3>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-language"></i></div>
+                            <div>Arabic (Native Fluency)</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-language"></i></div>
+                            <div>English (Fluent Written & Spoken)</div>
+                        </div>
+                        <div class="skill-icon"><i class="fas fa-language"></i></div>
+                            <div>French (Conversational)</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-language"></i></div>
+                            <div>Russian (Conversational)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Personal Attributes</h3>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-handshake"></i></div>
+                            <div>Team Leadership & Collaboration</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-comments"></i></div>
+                            <div>Excellent Communication Skills</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-fire"></i></div>
+                            <div>Performs Under Pressure</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-lightbulb"></i></div>
+                            <div>Problem Solving & Innovation</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Qualifications Section -->
+        <section class="section">
+            <h2 class="gradient-heading">Education & Qualifications</h2>
+            <div class="section-content">
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-header">Higher Education</div>
+                        <div class="card-body">
+                            <div class="qualification-item" style="margin-bottom: 20px;">
+                                <div style="font-weight: 600; font-size: 1.1rem; color: #8B4513;">Master of Business Administration</div>
+                                <div style="font-style: italic; margin: 5px 0;">American Diploma Course International Academy</div>
+                            </div>
+                            
+                            <div class="qualification-item" style="margin-bottom: 20px;">
+                                <div style="font-weight: 600; font-size: 1.1rem; color: #8B4513;">Higher School Certificate</div>
+                                <div style="font-style: italic; margin: 5px 0;">Tourism and Hotels (Hotels Management)</div>
+                            </div>
+                            
+                            <div class="qualification-item">
+                                <div style="font-weight: 600; font-size: 1.1rem; color: #8B4513;">Secondary School Certificate</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">Specialized Training</div>
+                        <div class="card-body">
+                            <div style="margin-bottom: 15px;">
+                                <div style="font-weight: 600;">Airport Food Service Management</div>
+                                <div>SSP International Food Travel Expert</div>
+                            </div>
+                            
+                            <div style="margin-bottom: 15px;">
+                                <div style="font-weight: 600;">International Training Methods</div>
+                                <div>Haagen Dazs America, Dubai</div>
+                            </div>
+                            
+                            <div>
+                                <div style="font-weight: 600;">Crisis & Human Resources Management</div>
+                                <div>ATCC Centre, Egypt</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Experience Section -->
+        <section class="section">
+            <h2 class="gradient-heading">Work Experience</h2>
+            <div class="section-content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="company">Khan Mandi Restaurants (MEM GROUP)</div>
+                            <div class="job-title">Director of Operations Manager</div>
+                            <span class="duration">Dec 2023 - Present | Baghdad, Iraq</span>
+                            <ul class="achievements">
+                                <li>Oversee 5+ locations serving 1,000+ daily guests</li>
+                                <li>Launched digital ordering system, cutting wait time by 20%</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="company">Oxy Restaurant</div>
+                            <div class="job-title">Director of Operations Manager</div>
+                            <span class="duration">Jul 2018 - Nov 2023 | Baghdad, Iraq</span>
+                            <ul class="achievements">
+                                <li>Achieved #1 in TripAdvisor rankings (Baghdad) for 3 consecutive years</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="company">Tonino Lamborghini Restaurant</div>
+                            <div class="job-title">Director of Operations</div>
+                            <span class="duration">May 2015 - May 2018 | Egypt</span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="company">SSP International Food Travel Expert</div>
+                            <div class="job-title">Chief Operating Officer for Global Restaurants</div>
+                            <span class="duration">Mar 2007 - Apr 2015 | International</span>
+                            <ul class="achievements">
+                                <li>Opened Hamad International Airport restaurants in Qatar</li>
+                                <li>Managed opening of Abu Dhabi International Airport restaurants</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="company">Five Stars Company for Restaurants & Bakery</div>
+                            <div class="job-title">Training Manager</div>
+                            <span class="duration">Jan 2007 - Mar 2008 | Egypt</span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="company">Mori Sushi Restaurants</div>
+                            <div class="job-title">Restaurant Manager</div>
+                            <span class="duration">2006 - 2007 | Zamalek & Marina, Egypt</span>
+                            <ul class="achievements">
+                                <li>Managed opening of Mori Sushi Marina North Coast</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="company">Horizon Hotel</div>
+                            <div class="job-title">Assistant Food & Beverage Manager</div>
+                            <span class="duration">2004 - 2006 | Sharm El Sheik, Egypt</span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="company">Trianon Restaurant & Danish Bakery</div>
+                            <div class="job-title">Restaurant General Manager</div>
+                            <span class="duration">2000 - 2003 | Egypt</span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="company">Abercrombie & Kent Nile Cruise Hotel</div>
+                            <div class="job-title">Restaurant Manager</div>
+                            <span class="duration">1996 - 2000 | Egypt</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p class="copyright">
+                © 2023 Mohamed Mostafa Ali. All Rights Reserved.
+                <a href="https://www.linkedin.com/in/mohamed-moustafa-b208a8107/" target="_blank" style="color:#0a66c2; margin-left:16px; text-decoration:none;">
+                    <i class="fab fa-linkedin fa-lg"></i>
+                </a>
+                <a href="mailto:mohamed.sspeg101@gmail.com" target="_blank" style="color:#c71610; margin-left:16px; text-decoration:none;">
+                    <i class="fas fa-envelope fa-lg"></i>
+                </a>
+            </p>
+        </div>
+    </footer>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var btn = document.getElementById('toggle-others-btn');
+        var others = document.getElementById('others-certificates');
+        if (btn && others) {
+            btn.addEventListener('click', function() {
+                if (others.style.display === 'none' || others.style.display === '') {
+                    others.style.display = 'flex';
+                    btn.textContent = 'Hide Others';
+                } else {
+                    others.style.display = 'none';
+                    btn.textContent = 'Others';
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>
